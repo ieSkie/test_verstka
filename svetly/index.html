@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Додзё Медиа — сайты, поиск и реклама в единой системе." />
+    <title>Додзё Медиа</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400&family=Oranienbaum&display=swap"
+    />
+    <link rel="stylesheet" href="./style.css" />
+    <script type="module" src="./main.ts"></script>
+  </head>
+  <body>
+    <div class="page">
+      <header class="header">
+        <div class="header__bar">
+          <a class="header__brand" href="#approach">Додзё Медиа</a>
+
+          <nav class="header__nav" aria-label="Основная навигация">
+            <a class="link" href="#projects">Проекты</a>
+            <a class="link" href="#approach">Подход</a>
+            <a class="link" href="#contacts">Контакты</a>
+          </nav>
+
+          <a class="button header__cta" href="#contacts">Обсудить проект →</a>
+
+          <button
+            class="header__menu-button"
+            type="button"
+            aria-expanded="false"
+            aria-controls="mobile-nav"
+            aria-label="Открыть меню"
+            data-menu-toggle
+          >
+            <!-- Иконки рисую сам: в макете простые линии 20×20 -->
+            <svg class="icon icon--menu" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <path d="M4 7.5h12M4 12.5h12" stroke="currentColor" stroke-width="1.5" />
+            </svg>
+            <svg class="icon icon--close" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <path d="M5 5l10 10M15 5L5 15" stroke="currentColor" stroke-width="1.5" />
+            </svg>
+          </button>
+        </div>
+
+        <nav id="mobile-nav" class="mobile-nav" aria-label="Мобильная навигация" hidden>
+          <a class="mobile-nav__link link" href="#projects">Проекты</a>
+          <a class="mobile-nav__link link" href="#approach">Подход</a>
+          <a class="mobile-nav__link link" href="#contacts">Контакты</a>
+          <a class="button button--wide" href="#contacts">Обсудить проект →</a>
+        </nav>
+      </header>
+
+      <main>
+        <section id="approach" class="hero" aria-labelledby="hero-title">
+          <p class="label">Сайты · Поиск · Смысл</p>
+          <div class="hero__intro">
+            <h1 id="hero-title" class="h1 hero__title">Цифровое ремесло.<br />Измеримый результат.</h1>
+            <div class="hero__description">
+              <p class="body">Собираем сайты, поиск и рекламу в единую систему. Помогаем амбициозным брендам расти.</p>
+              <p class="label">Из Ярославля — в любую точку мира</p>
+            </div>
+          </div>
+          <!-- Заглушка: замени assets/hero.png на картинку из макета -->
+          <img
+            class="hero__image"
+            src="./assets/hero.png"
+            alt="Мастера в одеждах эпохи Возрождения работают с ноутбуком, планшетом и картами аналитики"
+            width="1200"
+            height="482"
+            fetchpriority="high"
+          />
+        </section>
+
+        <section id="projects" class="projects" aria-labelledby="projects-title">
+          <div class="projects__heading">
+            <h2 id="projects-title" class="h2">Избранные работы</h2>
+            <p class="label">Три проекта. Три истории.</p>
+          </div>
+
+          <!-- Карточка целиком — одна ссылка, без вложенных ссылок и кнопок (требование макета).
+               Страниц проектов в макете нет, поэтому href пока ведёт на секцию. -->
+          <ul class="projects__grid">
+            <li>
+              <a class="card" href="#projects">
+                <img class="card__image" src="./assets/briskly.png" alt="Чёрная визитка Briskly на осенних листьях" width="352" height="220" loading="lazy" />
+                <h3 class="card__title">Брискли</h3>
+                <p class="card__tags">Сайт · Брендинг · Реклама</p>
+                <span class="card__more" aria-hidden="true">Смотреть проект →</span>
+              </a>
+            </li>
+            <li>
+              <a class="card" href="#projects">
+                <img class="card__image" src="./assets/trade.png" alt="Грузовое судно у причала морского порта" width="352" height="220" loading="lazy" />
+                <h3 class="card__title">Трейд Оверсиз</h3>
+                <p class="card__tags">Сайт · Стратегия · Реклама</p>
+                <span class="card__more" aria-hidden="true">Смотреть проект →</span>
+              </a>
+            </li>
+            <li>
+              <a class="card" href="#projects">
+                <img class="card__image" src="./assets/dvor.png" alt="Фасад исторического здания с арочной галереей" width="352" height="220" loading="lazy" />
+                <h3 class="card__title">Гостиный двор</h3>
+                <p class="card__tags">Сайт · Брендинг · Стратегия</p>
+                <span class="card__more" aria-hidden="true">Смотреть проект →</span>
+              </a>
+            </li>
+          </ul>
+        </section>
+      </main>
+
+      <footer id="contacts" class="footer">
+        <div class="footer__contact">
+          <div class="footer__copy">
+            <h2 class="h2">Начнём с вашей идеи.</h2>
+            <a class="link link--muted" href="mailto:hello@dojo-media.com">hello@dojo-media.com</a>
+          </div>
+          <a class="button footer__button" href="mailto:hello@dojo-media.com">Обсудить проект →</a>
+        </div>
+        <div class="footer__bottom">
+          <p>© 2026 Додзё Медиа</p>
+          <p>Мастерство начинается с деталей.</p>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
