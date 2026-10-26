@@ -10,15 +10,17 @@
   --white: #ffffff;
   --hover: #e9e3d6;
 
-  --font-display: 'Oranienbaum', 'Times New Roman', serif;
-  --font-body: 'Manrope', system-ui, sans-serif;
+  --font-display: "Oranienbaum", "Times New Roman", serif;
+  --font-body: "Manrope", system-ui, sans-serif;
 
   --container: 1200px;
   --gutter: 40px; /* на 1440 контейнер 1200 сам даёт поля по 120 px */
 }
 
 @media (max-width: 767px) {
-  :root { --gutter: 20px; }
+  :root {
+    --gutter: 20px;
+  }
 }
 
 /* =========================================================
@@ -44,7 +46,10 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-h1, h2, h3, p {
+h1,
+h2,
+h3,
+p {
   margin: 0;
   font-weight: 400;
 }
@@ -141,7 +146,7 @@ img {
   flex-direction: column;
   gap: 12px;
   height: 100%;
-  padding: 16px;
+  padding: 15px;
   border: 1px solid var(--line);
   color: var(--ink);
   text-decoration: none;
@@ -185,7 +190,7 @@ img {
   align-items: center;
   justify-content: space-between;
   gap: 24px;
-  padding-block: 24px;
+  padding-block: 24px 23px;
   border-bottom: 1px solid var(--line);
 }
 
@@ -221,8 +226,8 @@ img {
 }
 
 /* Какую иконку показывать, решает aria-expanded — одно состояние, без дублирования в JS */
-.header__menu-button[aria-expanded='true'] .icon--menu,
-.header__menu-button[aria-expanded='false'] .icon--close {
+.header__menu-button[aria-expanded="true"] .icon--menu,
+.header__menu-button[aria-expanded="false"] .icon--close {
   display: none;
 }
 
@@ -275,7 +280,7 @@ img {
   display: flex;
   flex-direction: column;
   gap: 32px;
-  padding: 48px 0 64px;
+  padding: 47px 0 64px;
   border-top: 1px solid var(--line);
 }
 
@@ -302,7 +307,7 @@ img {
   display: flex;
   flex-direction: column;
   gap: 24px;
-  padding: 48px 0 24px;
+  padding: 47px 0 24px;
   border-top: 1px solid var(--line);
 }
 
@@ -406,7 +411,7 @@ img {
 
   .projects {
     gap: 24px;
-    padding: 40px 0 48px;
+    padding: 39px 0 48px;
   }
 
   .projects__heading {
@@ -421,7 +426,7 @@ img {
   }
 
   .footer {
-    padding-top: 32px;
+    padding-top: 31px;
   }
 
   .footer__contact {
@@ -440,7 +445,11 @@ img {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
+  html {
+    scroll-behavior: auto;
+  }
   .button,
-  .card { transition: none; }
+  .card {
+    transition: none;
+  }
 }
