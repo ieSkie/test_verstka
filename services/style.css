@@ -1,0 +1,880 @@
+/* =========================================================
+   Токены из макета
+   ========================================================= */
+:root {
+  --bg: #f4f7fc; /* Secondary — фон страницы и полей */
+  --heading: #223959;
+  --placeholder: #92a1bc; /* Secondary2 */
+  --mint: #38bfc4;
+  --mint-hover: #2eaeb3;
+  --mint-active: #279ca1;
+  --link: #55d6da;
+  --text-on-blue: #b4d1ff;
+  --white: #ffffff;
+  --error: #ffb3b3; /* своё: светло-красный читается на синем фоне */
+  --error-border: #ff6b6b;
+  --dark-1: #3d4553; /* радиальный градиент кнопок карточки */
+  --dark-2: #26283a;
+
+  --font: "Montserrat", system-ui, sans-serif;
+
+  --container: 1200px;
+  --gutter: 40px;
+  --card: 384px;
+  --card-gap: 24px;
+  --card-radius: 20px;
+}
+
+@media (max-width: 767px) {
+  :root {
+    --gutter: 20px;
+    --card: 154px;
+    --card-gap: 10px;
+    --card-radius: 10px;
+  }
+}
+
+/* =========================================================
+   База
+   ========================================================= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--heading);
+  font-family: var(--font);
+  font-weight: 500;
+  -webkit-font-smoothing: antialiased;
+  /* лента услуг выходит за контейнер вправо до края экрана */
+  overflow-x: clip;
+}
+
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+:focus-visible {
+  outline: 2px solid var(--mint);
+  outline-offset: 3px;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.page {
+  max-width: calc(var(--container) + var(--gutter) * 2);
+  margin-inline: auto;
+  padding: 50px var(--gutter);
+}
+
+/* =========================================================
+   Кнопки
+   ========================================================= */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 20px;
+  border: 1px solid rgb(255 255 255 / 0.2);
+  border-radius: 40px;
+  background: var(--mint);
+  color: var(--white);
+  font: 600 14px/1.4 var(--font);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.button:hover {
+  background: var(--mint-hover);
+}
+
+.button:active {
+  background: var(--mint-active);
+}
+
+.button:focus-visible {
+  outline-color: var(--white);
+}
+
+.button[aria-busy="true"] {
+  opacity: 0.75;
+  cursor: progress;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 32px;
+  border-radius: 20px;
+  background: radial-gradient(ellipse at center, var(--dark-1), var(--dark-2));
+  color: var(--white);
+  font: 600 16px/1.4 var(--font);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: filter 0.15s ease;
+}
+
+.round-button {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, var(--dark-1), var(--dark-2));
+  color: var(--white);
+  cursor: pointer;
+  transition: filter 0.15s ease;
+}
+
+.pill:hover,
+.round-button:hover {
+  filter: brightness(1.35);
+}
+
+.pill:active,
+.round-button:active {
+  filter: brightness(0.9);
+}
+
+.round-button--outline {
+  border: 1px solid currentColor;
+  background: transparent;
+  color: var(--heading);
+}
+
+.round-button--outline:hover {
+  filter: none;
+  background: var(--heading);
+  color: var(--white);
+}
+
+.round-button--outline:disabled {
+  opacity: 0.35;
+  cursor: default;
+  background: transparent;
+  color: var(--heading);
+}
+
+/* =========================================================
+   Услуги
+   ========================================================= */
+.services__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+.services__title {
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 39px;
+}
+
+.services__nav:not([hidden]) {
+  display: flex;
+  gap: 10px;
+}
+
+.services__track {
+  display: flex;
+  gap: var(--card-gap);
+  margin: 0;
+  /* ширина ленты = от левого края контейнера до правого края экрана */
+  margin-right: calc((100% - 100vw) / 2);
+  padding: 4px var(--gutter) 4px 0; /* 4px — чтобы не обрезался focus outline */
+  list-style: none;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+}
+
+.services__track::-webkit-scrollbar {
+  display: none;
+}
+
+/* =========================================================
+   Карточка услуги
+   ========================================================= */
+.card {
+  --notch-gap: 10px; /* отступ выреза вокруг кнопок */
+  position: relative;
+  flex: none;
+  width: var(--card);
+  height: var(--card);
+  scroll-snap-align: start;
+}
+
+/* Скругление и обрезка — на картинке, а не на всей карточке:
+   иначе overflow: hidden срезает обводку фокуса у кнопок */
+.card__media {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--card-radius);
+  overflow: hidden;
+}
+
+.card__actions :focus-visible {
+  outline-offset: 2px; /* обводка помещается в 4 px запаса у ленты */
+}
+
+.card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: var(--dark-2);
+  transition: transform 0.4s ease;
+}
+
+.card:hover .card__image {
+  transform: scale(1.03);
+}
+
+.card__title {
+  position: absolute;
+  z-index: 1;
+  left: 32px;
+  right: 32px;
+  bottom: 80px;
+  color: var(--white);
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 39px;
+}
+
+.card__actions :focus-visible {
+  outline-offset: 2px; /* обводка помещается в 4 px запаса у ленты */
+}
+
+/* Вырез в правом нижнем углу: блок цвета фона + два «вогнутых» угла через radial-gradient */
+.card__actions {
+  position: absolute;
+  z-index: 1;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  gap: 10px;
+  padding: var(--notch-gap) 0 0 var(--notch-gap);
+  border-top-left-radius: var(--card-radius);
+  background: var(--bg);
+}
+
+.card__actions::before,
+.card__actions::after {
+  content: "";
+  position: absolute;
+  width: var(--card-radius);
+  height: var(--card-radius);
+  background: radial-gradient(
+    circle at 0 0,
+    transparent calc(var(--card-radius) - 0.5px),
+    var(--bg) var(--card-radius)
+  );
+}
+
+.card__actions::before {
+  right: 0;
+  bottom: 100%;
+}
+
+.card__actions::after {
+  right: 100%;
+  bottom: 0;
+}
+
+/* =========================================================
+   Форма записи
+   ========================================================= */
+.booking {
+  position: relative;
+  display: grid;
+  grid-template-columns: 415px 1fr;
+  margin-top: 50px;
+  min-height: 323px;
+  color: var(--white);
+  isolation: isolate; /* чтобы фон (::before) лёг под фото и контент */
+  --photo-left: 32px;
+}
+
+/* Фон отдельным слоем. Контур из Figma задаётся ниже через clip-path: shape()
+   (в блоке @supports). Для старых браузеров без shape() контур считает shape.ts. */
+.booking::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  clip-path: var(--booking-shape, inset(0 round 30px));
+  background:
+    radial-gradient(
+      circle at 215px calc(100% - 38px),
+      rgb(255 255 255 / 0.4),
+      transparent 300px
+    ),
+    radial-gradient(ellipse 620px 420px at 68% 14%, #233a5a, #3c6ab9);
+}
+
+.booking__photo {
+  position: absolute;
+  left: var(--photo-left);
+  bottom: 0;
+  width: 357px;
+  height: 353px; /* на 30 px выше блока: голова выходит за верхний край, как в макете */
+  object-fit: cover;
+  object-position: center top;
+  clip-path: var(
+    --booking-photo-shape,
+    none
+  ); /* обрезка по контуру фона, см. @supports ниже */
+  pointer-events: none;
+}
+
+.booking__content {
+  grid-column: 2;
+  position: relative;
+  padding: 61px 40px 38px 0;
+}
+
+.booking__title {
+  max-width: 560px; /* перенос после «бесплатную», как в макете */
+  margin-bottom: 21px;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.22;
+}
+
+.br-mobile {
+  display: none;
+}
+.booking__text {
+  max-width: 560px;
+  margin-bottom: 21px;
+  color: var(--text-on-blue);
+  font-size: 12px;
+  line-height: 1.22;
+}
+
+.form__service {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 14px;
+  padding: 4px 6px 4px 12px;
+  border-radius: 20px;
+  background: rgb(255 255 255 / 0.15);
+  font-size: 12px;
+}
+
+.form__service-reset {
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: inherit;
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.form__service-reset:hover {
+  background: rgb(255 255 255 / 0.2);
+}
+
+.form__row {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.form__row .button {
+  margin-left: 20px; /* в макете между полями и кнопкой 30 px */
+}
+
+.field {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 240px;
+}
+
+.field__label {
+  font-size: 10px;
+  line-height: 1.2;
+}
+
+.field__input {
+  height: 40px;
+  padding: 10px;
+  border: 1px solid var(--white);
+  border-radius: 10px;
+  background: var(--bg);
+  color: var(--heading);
+  font: 500 12px/1.2 var(--font);
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.field__input::placeholder {
+  color: var(--placeholder);
+}
+
+.field__input:hover {
+  border-color: var(--mint);
+}
+
+.field__input:focus-visible {
+  outline: none;
+  border-color: var(--mint);
+  box-shadow: 0 0 0 3px rgb(56 191 196 / 0.45);
+}
+
+.field__input[aria-invalid="true"] {
+  border-color: var(--error-border);
+  box-shadow: 0 0 0 1px var(--error-border);
+}
+
+.field__error {
+  color: var(--error);
+  font-size: 10px;
+  line-height: 1.2;
+}
+
+/* На десктопе ошибка не двигает ряд полей и кнопку */
+.form__row .field__error {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+}
+
+.field__error:empty {
+  display: none;
+}
+
+.consent {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 4px 11px;
+  margin-top: 21px;
+}
+
+.consent__input {
+  appearance: none;
+  flex: none;
+  display: grid;
+  place-content: center;
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  border: 1.5px solid rgb(255 255 255 / 0.6);
+  border-radius: 4px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.consent__input::after {
+  content: "";
+  width: 10px;
+  height: 6px;
+  margin-top: -2px;
+  border-left: 2px solid var(--white);
+  border-bottom: 2px solid var(--white);
+  transform: rotate(-45deg) scale(0);
+  transition: transform 0.1s ease;
+}
+
+.consent__input:checked {
+  border-color: transparent;
+  background: #4f6fad;
+}
+
+.consent__input:checked::after {
+  transform: rotate(-45deg) scale(1);
+}
+
+.consent__input[aria-invalid="true"] {
+  border-color: var(--error-border);
+}
+
+.consent__label {
+  flex: 1;
+  font-size: 12px;
+  line-height: 1.4;
+  padding-top: 1px;
+  cursor: pointer;
+}
+
+.consent__link {
+  color: var(--link);
+  font-weight: 700;
+}
+
+.consent__link:hover {
+  color: var(--white);
+}
+
+.consent__error {
+  flex-basis: 100%;
+  padding-left: 31px;
+}
+
+.success {
+  max-width: 560px;
+}
+
+.success:focus {
+  outline: none;
+}
+
+.success__title {
+  margin-bottom: 10px;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.success__text {
+  margin-bottom: 21px;
+  color: var(--text-on-blue);
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+/* =========================================================
+   Планшет 768–1199 — в макете нет, моё решение:
+   фото уезжает, форма занимает всю ширину
+   ========================================================= */
+@media (max-width: 1199px) {
+  .booking {
+    grid-template-columns: 300px 1fr;
+    --photo-left: 0px;
+  }
+
+  .booking__photo {
+    width: 300px;
+  }
+
+  .form__row {
+    flex-wrap: wrap;
+    row-gap: 24px;
+  }
+
+  .form__row .field {
+    flex: 1 1 200px;
+  }
+
+  .form__row .button {
+    margin-left: 0;
+  }
+}
+
+/* 768–1023: фото остаётся (ступенька фона обнимает именно его), но уже */
+@media (max-width: 1023px) and (min-width: 768px) {
+  .booking {
+    grid-template-columns: 250px 1fr;
+  }
+
+  .booking__photo {
+    width: 250px;
+    object-position: 70% top; /* при обрезке по бокам лицо остаётся в кадре */
+  }
+
+  .booking__content {
+    padding: 56px 32px 40px 0;
+  }
+}
+
+/* =========================================================
+   Мобильная версия (макет 390)
+   ========================================================= */
+@media (max-width: 767px) {
+  .page {
+    padding-block: 20px;
+  }
+
+  .services__head {
+    margin-bottom: 16px;
+  }
+
+  .services__title {
+    font-size: 28px;
+    line-height: 34px;
+  }
+
+  .services__nav:not([hidden]) {
+    display: none; /* на телефоне лента листается свайпом */
+  }
+
+  /* карточка: картинка сверху, кнопки отдельной строкой, без выреза */
+  .card {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .card__media {
+    position: relative;
+    inset: auto;
+    flex: 1;
+  }
+
+  .card__title {
+    left: 12px;
+    right: 12px;
+    bottom: 6px;
+    font-size: 13px;
+    line-height: 16px;
+  }
+
+  .card__actions {
+    position: static;
+    gap: 6px;
+    padding: 0;
+    border-radius: 0;
+    background: none;
+  }
+
+  .card__actions::before,
+  .card__actions::after {
+    content: none;
+  }
+
+  .pill {
+    flex: 1;
+    padding: 4px 12px;
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  .card .round-button {
+    width: 25px;
+    height: 25px;
+  }
+
+  .card .round-button svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .booking {
+    display: flex;
+    flex-direction: column;
+    margin-top: 24px;
+    min-height: 0;
+  }
+
+  .booking::before {
+    background:
+      radial-gradient(
+        circle at 56% 100%,
+        rgb(199 223 255 / 0.45),
+        transparent 300px
+      ),
+      radial-gradient(ellipse 480px 600px at 13% 49%, #233a5a, #3c6ab9);
+  }
+
+  .booking__content {
+    padding: 80px 40px 0;
+  }
+
+  .br-mobile {
+    display: inline;
+  }
+
+  .br-desktop {
+    display: none;
+  }
+
+  .booking__title {
+    max-width: none;
+    margin-bottom: 16px;
+    font-size: 20px;
+  }
+
+  .booking__text {
+    margin-bottom: 16px;
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  .form__row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .form__row .field {
+    flex: none;
+    width: 100%;
+  }
+
+  .field__label {
+    font-size: 12px;
+  }
+
+  .form__row .field__error {
+    position: static;
+  }
+
+  .form__row .button {
+    width: 100%;
+    margin-top: 8px;
+  }
+
+  .consent {
+    margin-top: 14px;
+  }
+
+  .consent__link {
+    color: var(--mint);
+    text-decoration: none;
+  }
+
+  .booking__photo {
+    order: 2; /* на мобилке фото под формой */
+    position: relative;
+    left: auto;
+    width: 100%;
+    height: 254px;
+    margin-top: 16px;
+    object-fit: cover;
+    object-position: center top;
+  }
+}
+
+/* =========================================================
+   Контур фона формы из Figma (вершины и радиусы скругления «Vector 25»).
+   Чистый CSS — контур готов с первого кадра, без мигания.
+   Вырезы привязаны к углам через calc(100% - …), поэтому блок
+   тянется по ширине и высоте, а скосы не искажаются.
+   ========================================================= */
+@supports (clip-path: shape(from 0 0, line to 1px 1px)) {
+  .booking::before {
+    clip-path: shape(
+      from 0 30px,
+      arc to 30px 0 of 30px cw,
+      line to calc(100% - 89.04px) 0,
+      arc to calc(100% - 53.7px) 14.63px of 50px cw,
+      line to calc(100% - 14.66px) 53.63px,
+      arc to 100% 89px of 50px cw,
+      line to 100% calc(100% - 50px),
+      arc to calc(100% - 50px) 100% of 50px cw,
+      line to 127.38px 100%,
+      arc to 92.04px calc(100% - 14.63px) of 50px cw,
+      line to 53px calc(100% - 53.63px),
+      arc to 38.34px calc(100% - 89px) of 50px cw,
+      line to 38.34px calc(100% - 148.9px),
+      arc to 29.55px calc(100% - 170.12px) of 30px ccw,
+      line to 14.64px calc(100% - 185.03px),
+      arc to 0 calc(100% - 220.38px) of 50px cw,
+      close
+    );
+  }
+
+  /* Фото режем тем же контуром (в координатах фото): так обрезается ступенька слева снизу */
+  .booking__photo {
+    clip-path: shape(
+      from -200px -100px,
+      line to calc(100% + 200px) -100px,
+      line to calc(100% + 200px) 100%,
+      line to calc(127.38px - var(--photo-left)) 100%,
+      arc to calc(92.04px - var(--photo-left)) calc(100% - 14.63px) of 50px cw,
+      line to calc(53px - var(--photo-left)) calc(100% - 53.63px),
+      arc to calc(38.34px - var(--photo-left)) calc(100% - 89px) of 50px cw,
+      line to calc(38.34px - var(--photo-left)) calc(100% - 148.9px),
+      arc to calc(29.55px - var(--photo-left)) calc(100% - 170.12px) of 30px ccw,
+      line to calc(0px - var(--photo-left)) calc(100% - 199.67px),
+      line to -200px calc(100% - 199.67px),
+      close
+    );
+  }
+
+  @media (max-width: 767px) {
+    .booking::before {
+      clip-path: shape(
+        from 59.49px 8.8px,
+        arc to 80.71px 0 of 30px cw,
+        line to calc(100% - 20px) 0,
+        arc to 100% 20px of 20px cw,
+        line to 100% calc(100% - 119.1px),
+        arc to calc(100% - 8.78px) calc(100% - 97.89px) of 30px cw,
+        line to calc(100% - 59.49px) calc(100% - 47.14px),
+        arc to calc(100% - 80.71px) calc(100% - 38.34px) of 30px cw,
+        line to calc(100% - 182.12px) calc(100% - 38.34px),
+        arc to calc(100% - 192.72px) calc(100% - 33.95px) of 15px ccw,
+        line to calc(100% - 217.88px) calc(100% - 8.79px),
+        arc to calc(100% - 239.1px) 100% of 30px cw,
+        line to 15px 100%,
+        arc to 0 calc(100% - 15px) of 15px cw,
+        line to 0 80.76px,
+        arc to 8.78px 59.55px of 30px cw,
+        close
+      );
+    }
+
+    .booking__photo {
+      clip-path: shape(
+        from 0 -100px,
+        line to 100% -100px,
+        line to 100% calc(100% - 119.1px),
+        arc to calc(100% - 8.78px) calc(100% - 97.89px) of 30px cw,
+        line to calc(100% - 59.49px) calc(100% - 47.14px),
+        arc to calc(100% - 80.71px) calc(100% - 38.34px) of 30px cw,
+        line to calc(100% - 182.12px) calc(100% - 38.34px),
+        arc to calc(100% - 192.72px) calc(100% - 33.95px) of 15px ccw,
+        line to calc(100% - 217.88px) calc(100% - 8.79px),
+        arc to calc(100% - 239.1px) 100% of 30px cw,
+        line to 0 100%,
+        close
+      );
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+  }
+}

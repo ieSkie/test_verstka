@@ -1,0 +1,546 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Услуги стоматологии и запись на бесплатную консультацию."
+    />
+    <title>Услуги и запись на консультацию</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&display=swap"
+    />
+    <link rel="stylesheet" href="./style.css" />
+    <script type="module" src="./main.ts"></script>
+  </head>
+  <body>
+    <main class="page">
+      <!-- ============ Услуги ============ -->
+      <section id="services" class="services" aria-labelledby="services-title">
+        <div class="services__head">
+          <h2 id="services-title" class="services__title">Услуги</h2>
+          <!-- Стрелок в макете нет: на десктопе горизонтальную ленту мышью не прокрутить, поэтому добавил -->
+          <div class="services__nav" data-slider-nav hidden>
+            <button
+              class="round-button round-button--outline"
+              type="button"
+              data-slider-prev
+              aria-label="Предыдущие услуги"
+            >
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 20 20"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M12.5 4l-6 6 6 6"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+            <button
+              class="round-button round-button--outline"
+              type="button"
+              data-slider-next
+              aria-label="Следующие услуги"
+            >
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 20 20"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M7.5 4l6 6-6 6"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <ul class="services__track" data-slider-track>
+          <li class="card">
+            <div class="card__media">
+              <img
+                class="card__image"
+                src="./assets/service-01.png"
+                alt=""
+                width="384"
+                height="384"
+                loading="lazy"
+              />
+              <h3 class="card__title">Элайнеры</h3>
+            </div>
+            <div class="card__actions">
+              <a class="pill" href="#booking" data-service="Элайнеры"
+                >Консультация<span class="visually-hidden">
+                  по услуге «Элайнеры»</span
+                ></a
+              >
+              <a
+                class="round-button"
+                href="#services"
+                aria-label="Подробнее: Элайнеры"
+                ><svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M7.5 4l6 6-6 6"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  /></svg
+              ></a>
+            </div>
+          </li>
+          <li class="card">
+            <div class="card__media">
+              <img
+                class="card__image"
+                src="./assets/service-02.png"
+                alt=""
+                width="384"
+                height="384"
+                loading="lazy"
+              />
+              <h3 class="card__title">Имплантация</h3>
+            </div>
+            <div class="card__actions">
+              <a class="pill" href="#booking" data-service="Имплантация"
+                >Консультация<span class="visually-hidden">
+                  по услуге «Имплантация»</span
+                ></a
+              >
+              <a
+                class="round-button"
+                href="#services"
+                aria-label="Подробнее: Имплантация"
+                ><svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M7.5 4l6 6-6 6"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  /></svg
+              ></a>
+            </div>
+          </li>
+          <li class="card">
+            <div class="card__media">
+              <img
+                class="card__image"
+                src="./assets/service-03.png"
+                alt=""
+                width="384"
+                height="384"
+                loading="lazy"
+              />
+              <h3 class="card__title">Брекеты</h3>
+            </div>
+            <div class="card__actions">
+              <a class="pill" href="#booking" data-service="Брекеты"
+                >Консультация<span class="visually-hidden">
+                  по услуге «Брекеты»</span
+                ></a
+              >
+              <a
+                class="round-button"
+                href="#services"
+                aria-label="Подробнее: Брекеты"
+                ><svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M7.5 4l6 6-6 6"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  /></svg
+              ></a>
+            </div>
+          </li>
+          <li class="card">
+            <div class="card__media">
+              <img
+                class="card__image"
+                src="./assets/service-04.png"
+                alt=""
+                width="384"
+                height="384"
+                loading="lazy"
+              />
+              <h3 class="card__title">Терапия</h3>
+            </div>
+            <div class="card__actions">
+              <a class="pill" href="#booking" data-service="Терапия"
+                >Консультация<span class="visually-hidden">
+                  по услуге «Терапия»</span
+                ></a
+              >
+              <a
+                class="round-button"
+                href="#services"
+                aria-label="Подробнее: Терапия"
+                ><svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M7.5 4l6 6-6 6"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  /></svg
+              ></a>
+            </div>
+          </li>
+          <li class="card">
+            <div class="card__media">
+              <img
+                class="card__image"
+                src="./assets/service-05.png"
+                alt=""
+                width="384"
+                height="384"
+                loading="lazy"
+              />
+              <h3 class="card__title">Гигиена<br />полости рта</h3>
+            </div>
+            <div class="card__actions">
+              <a class="pill" href="#booking" data-service="Гигиена полости рта"
+                >Консультация<span class="visually-hidden">
+                  по услуге «Гигиена полости рта»</span
+                ></a
+              >
+              <a
+                class="round-button"
+                href="#services"
+                aria-label="Подробнее: Гигиена полости рта"
+                ><svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M7.5 4l6 6-6 6"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  /></svg
+              ></a>
+            </div>
+          </li>
+          <li class="card">
+            <div class="card__media">
+              <img
+                class="card__image"
+                src="./assets/service-06.png"
+                alt=""
+                width="384"
+                height="384"
+                loading="lazy"
+              />
+              <h3 class="card__title">Хирургия</h3>
+            </div>
+            <div class="card__actions">
+              <a class="pill" href="#booking" data-service="Хирургия"
+                >Консультация<span class="visually-hidden">
+                  по услуге «Хирургия»</span
+                ></a
+              >
+              <a
+                class="round-button"
+                href="#services"
+                aria-label="Подробнее: Хирургия"
+                ><svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M7.5 4l6 6-6 6"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  /></svg
+              ></a>
+            </div>
+          </li>
+          <li class="card">
+            <div class="card__media">
+              <img
+                class="card__image"
+                src="./assets/service-07.png"
+                alt=""
+                width="384"
+                height="384"
+                loading="lazy"
+              />
+              <h3 class="card__title">Гнатология</h3>
+            </div>
+            <div class="card__actions">
+              <a class="pill" href="#booking" data-service="Гнатология"
+                >Консультация<span class="visually-hidden">
+                  по услуге «Гнатология»</span
+                ></a
+              >
+              <a
+                class="round-button"
+                href="#services"
+                aria-label="Подробнее: Гнатология"
+                ><svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M7.5 4l6 6-6 6"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  /></svg
+              ></a>
+            </div>
+          </li>
+          <li class="card">
+            <div class="card__media">
+              <img
+                class="card__image"
+                src="./assets/service-08.png"
+                alt=""
+                width="384"
+                height="384"
+                loading="lazy"
+              />
+              <h3 class="card__title">Протезирование</h3>
+            </div>
+            <div class="card__actions">
+              <a class="pill" href="#booking" data-service="Протезирование"
+                >Консультация<span class="visually-hidden">
+                  по услуге «Протезирование»</span
+                ></a
+              >
+              <a
+                class="round-button"
+                href="#services"
+                aria-label="Подробнее: Протезирование"
+                ><svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M7.5 4l6 6-6 6"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  /></svg
+              ></a>
+            </div>
+          </li>
+          <li class="card">
+            <div class="card__media">
+              <img
+                class="card__image"
+                src="./assets/service-09.png"
+                alt=""
+                width="384"
+                height="384"
+                loading="lazy"
+              />
+              <h3 class="card__title">Эстетическая стоматология</h3>
+            </div>
+            <div class="card__actions">
+              <a
+                class="pill"
+                href="#booking"
+                data-service="Эстетическая стоматология"
+                >Консультация<span class="visually-hidden">
+                  по услуге «Эстетическая стоматология»</span
+                ></a
+              >
+              <a
+                class="round-button"
+                href="#services"
+                aria-label="Подробнее: Эстетическая стоматология"
+                ><svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M7.5 4l6 6-6 6"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  /></svg
+              ></a>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <!-- ============ Форма записи ============ -->
+      <section id="booking" class="booking" aria-labelledby="booking-title">
+        <img
+          class="booking__photo"
+          src="./assets/form-photo.png"
+          alt=""
+          width="357"
+          height="353"
+          loading="lazy"
+        />
+
+        <div class="booking__content">
+          <!-- Переносы как в макете: на десктопе после «бесплатную», на мобилке после «Запишитесь» -->
+          <h2 id="booking-title" class="booking__title">
+            Запишитесь <br class="br-mobile" />на бесплатную
+            <br class="br-desktop" />консультацию прямо сейчас!
+          </h2>
+          <p class="booking__text">
+            Хотите узнать подробнее? Наши специалисты ответят на все ваши
+            вопросы и помогут выбрать оптимальный путь к здоровой и красивой
+            улыбке.
+          </p>
+
+          <form class="form" data-booking-form novalidate>
+            <!-- Заполняется кнопкой «Консультация» в карточке -->
+            <input type="hidden" name="service" value="" />
+            <p class="form__service" data-service-chip hidden>
+              Услуга: <strong data-service-name></strong>
+              <button
+                class="form__service-reset"
+                type="button"
+                data-service-reset
+                aria-label="Убрать выбранную услугу"
+              >
+                ×
+              </button>
+            </p>
+
+            <div class="form__row">
+              <div class="field">
+                <label class="field__label" for="name">Введите ФИО</label>
+                <input
+                  class="field__input"
+                  id="name"
+                  name="name"
+                  type="text"
+                  placeholder="ФИО"
+                  autocomplete="name"
+                  maxlength="100"
+                  required
+                  aria-describedby="name-error"
+                />
+                <p class="field__error" id="name-error" aria-live="polite"></p>
+              </div>
+
+              <div class="field">
+                <label class="field__label" for="phone"
+                  >Введите номер телефона</label
+                >
+                <input
+                  class="field__input"
+                  id="phone"
+                  name="phone"
+                  type="tel"
+                  placeholder="+7..."
+                  inputmode="tel"
+                  autocomplete="tel"
+                  required
+                  aria-describedby="phone-error"
+                />
+                <p class="field__error" id="phone-error" aria-live="polite"></p>
+              </div>
+
+              <button class="button" type="submit" data-submit>
+                Записаться на прием
+              </button>
+            </div>
+
+            <div class="consent">
+              <input
+                class="consent__input"
+                id="consent"
+                name="consent"
+                type="checkbox"
+                checked
+                required
+                aria-describedby="consent-error"
+              />
+              <label class="consent__label" for="consent">
+                я даю свое согласие на
+                <a class="consent__link" href="#booking"
+                  >обработку персональных данных</a
+                >
+              </label>
+              <p
+                class="field__error consent__error"
+                id="consent-error"
+                aria-live="polite"
+              ></p>
+            </div>
+          </form>
+
+          <div class="success" data-success tabindex="-1" hidden>
+            <p class="success__title">Заявка отправлена!</p>
+            <p class="success__text" data-success-text></p>
+            <button class="button" type="button" data-success-reset>
+              Отправить ещё одну
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
